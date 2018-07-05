@@ -52,13 +52,12 @@ open class WSTagView: UIView {
             }
         }
     }
-
-    open override var tintColor: UIColor! {
+    /// Background color to be used for normal state.
+    open var contentColor: UIColor? {
         didSet { updateContent(animated: false) }
     }
-
     /// Background color to be used for selected state.
-    open var selectedColor: UIColor? {
+    open var selectedContentColor: UIColor? {
         didSet { updateContent(animated: false) }
     }
 
@@ -88,12 +87,12 @@ open class WSTagView: UIView {
 
     public init(tag: WSTag) {
         super.init(frame: CGRect.zero)
-        self.backgroundColor = tintColor
+        self.backgroundColor = contentColor
         self.layer.cornerRadius = cornerRadius
         self.layer.masksToBounds = true
 
         textColor = .white
-        selectedColor = .gray
+        selectedContentColor = .gray
         selectedTextColor = .black
 
         textLabel.frame = CGRect(x: layoutMargins.left, y: layoutMargins.top, width: 0, height: 0)
@@ -116,7 +115,7 @@ open class WSTagView: UIView {
     }
 
     fileprivate func updateColors() {
-        self.backgroundColor = selected ? selectedColor : tintColor
+        backgroundColor = selected ? selectedContentColor : contentColor
         textLabel.textColor = selected ? selectedTextColor : textColor
     }
 
