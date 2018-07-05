@@ -300,6 +300,9 @@ open class WSTagsField: UIScrollView {
         }
     }
 
+    @discardableResult
+    override open func becomeFirstResponder() -> Bool { return textField.becomeFirstResponder() }
+
     open var isEditing: Bool {
         return self.textField.isEditing
     }
