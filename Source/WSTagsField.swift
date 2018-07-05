@@ -21,30 +21,30 @@ open class WSTagsField: UIScrollView {
     open weak var textDelegate: UITextFieldDelegate?
 
     /// Background color for tag view in normal (non-selected) state.
-    open override var tintColor: UIColor! {
+    open var tagColor: UIColor? {
         didSet {
-            tagViews.forEach { $0.tintColor = self.tintColor }
+            tagViews.forEach { $0.contentColor = self.tagColor }
         }
     }
 
     /// Text color for tag view in normal (non-selected) state.
-    open var textColor: UIColor? {
+    open var tagTextColor: UIColor? {
         didSet {
-            tagViews.forEach { $0.textColor = self.textColor }
+            tagViews.forEach { $0.textColor = self.tagTextColor }
         }
     }
 
     /// Background color for tag view in normal (selected) state.
-    open var selectedColor: UIColor? {
+    open var selectedTagColor: UIColor? {
         didSet {
-            tagViews.forEach { $0.selectedColor = self.selectedColor }
+            tagViews.forEach { $0.selectedContentColor = self.selectedTagColor }
         }
     }
 
     /// Text color for tag view in normal (selected) state.
-    open var selectedTextColor: UIColor? {
+    open var selectedTagTextColor: UIColor? {
         didSet {
-            tagViews.forEach { $0.selectedTextColor = self.selectedTextColor }
+            tagViews.forEach { $0.selectedTextColor = self.selectedTagTextColor }
         }
     }
 
@@ -324,9 +324,9 @@ open class WSTagsField: UIScrollView {
         let tagView = WSTagView(tag: tag)
         tagView.font = self.font
         tagView.tintColor = self.tintColor
-        tagView.textColor = self.textColor
-        tagView.selectedColor = self.selectedColor
-        tagView.selectedTextColor = self.selectedTextColor
+        tagView.textColor = self.tagTextColor
+        tagView.selectedContentColor = self.selectedTagColor
+        tagView.selectedTextColor = self.selectedTagTextColor
         tagView.displayDelimiter = self.isDelimiterVisible ? self.delimiter : ""
         tagView.cornerRadius = self.cornerRadius
         tagView.borderWidth = self.borderWidth
@@ -539,9 +539,10 @@ extension WSTagsField {
         self.isScrollEnabled = false
         self.showsHorizontalScrollIndicator = false
 
-        textColor = .white
-        selectedColor = .gray
-        selectedTextColor = .black
+        tagColor = tintColor
+        tagTextColor = .white
+        selectedTagColor = .gray
+        selectedTagTextColor = .black
 
         clipsToBounds = true
 
